@@ -1,6 +1,10 @@
 /* variables */
 :root {
-    --light: #fff;
+    --light: #e8e1ef;
+    --middle: #868686;
+    --dark: #565656;
+    --greenDark: #069e2d;
+    --greenLight: #daff7d;
 }
 /* universal selectors */
 * {
@@ -13,11 +17,12 @@ body {
 }
 /* header selectors */
 header {
-    color: var(--light);
-    background-color: #96096e;
+    color: var(--greenLight);
+    text-shadow: 0 3px 1px var(--greenDark);
+    background-color: var(--middle);
     text-align: center;
     padding: 20px;
-    border-bottom: 5px solid #5c0a44;
+    border-bottom: 5px solid var(--dark);
     height: 15%;
 }
 
@@ -37,23 +42,36 @@ main {
 }
 /* section selectors */
 section {
-    /* height: 75vh; */
+    height: 100%;
     width: 100%;
+    border: 3px solid #000;
+    border-left: 0;
+
 }
 /* aside selectors */
 aside {
-    /* height: 75vh; */
+    height: 100%;
     width: 20%;
     color: var(--light);
-    background-color: #680f7a;
-    border-right: 5px solid #550c64;
+    background-color: var(--dark);
+    border: 3px solid #000;
+    border-left: 0;
     text-align: center;
 }
 /* footer selectors */
 footer {
-    color: var(--light);
-    background-color: #96096e;
+    color: var(--greenLight);
+    text-shadow: 0 3px 1px var(--greenDark);
+    background-color: var(--middle);
     height: 8%;
+    text-align: center;
+    padding: 20px 0 0;
+    border-top: 5px solid var(--dark)
+}
+
+footer span {
+    color: #7ee8fa;
+    text-shadow: 0 3px 1px #090c9b;
 }
 
 /* media selectors */
