@@ -1,0 +1,14 @@
+/* variables */
+:root {
+    --light: #e8e1ef;
+    --middle: #868686;
+    --dark: #565656;
+    --greenDark: #069e2d;
+    --greenLight: #daff7d;
+    --blueDark: #090c9b;
+    --blueLight: #7ee8fa;
+    --redDark: #53131E;
+    --redLight: #EF3054;
+}
+
+/* universal selectors */
