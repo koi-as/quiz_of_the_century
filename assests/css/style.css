@@ -1,6 +1,6 @@
 /* variables */
 :root {
-    --light: #e8e1ef;
+    --light: #fff;
     --middle: #868686;
     --dark: #565656;
     --greenDark: #069e2d;
@@ -79,7 +79,8 @@ section button:hover {
     background-color: var(--blueDark);
 }
 
-section button:active {
+section button:active,
+section button:focus {
     border: 3px solid var(--greenLight);
     background-color: var(--greenDark);
 }
