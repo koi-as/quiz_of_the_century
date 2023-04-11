@@ -113,8 +113,9 @@ footer {
     font-size: 20px;
 }
 
-footer span {
+footer span a {
     color: var(--blueDark);
+    text-decoration: none;
     font-size: 20px;
 }
 
