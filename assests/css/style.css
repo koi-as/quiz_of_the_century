@@ -7,6 +7,8 @@
     --greenLight: #daff7d;
     --blueDark: #090c9b;
     --blueLight: #7ee8fa;
+    --redDark: #53131E;
+    --redLight: #EF3054;
 }
 
 /* universal selectors */
@@ -21,27 +23,17 @@ body {
 
 /* header selectors */
 header {
-    color: var(--greenLight);
-    text-shadow: 0 3px 1px var(--greenDark);
-    background-color: var(--middle);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
-    border-bottom: 5px solid var(--dark);
-    height: 15%;
+    height: 10%;
+    border-bottom: 2px solid var(--dark);
 }
 
-header h1,
-header h2 {
+header p {
     padding: 5px;
-}
-
-header h1 {
-    font-size: 50px;
+    font-size: 20px;
     text-decoration: underline;
-}
-
-header h2 {
-    font-size: 36px;
 }
 
 /* main selectors */
@@ -49,14 +41,40 @@ main {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    height: 77%;
+    height: 85%;
+}
+
+main section .ansBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+main section div .questionMenu button {
+    height: 40px;
+    width: 70%;
+    color: var(--light);
+    border: 3px solid var(--middle);
+    background-color: var(--dark);
+    padding: 5px 0;
+    margin: 10px 5px;
+}
+
+main section div .questionMenu button:hover {
+    border: 3px solid var(--blueLight);
+    background-color: var(--blueDark);
+}
+
+main section #response {
+    font-size: 20px;
 }
 
 /* section selectors */
 section {
     height: 100%;
     width: 100%;
-    border: 3px solid #000;
     border-left: 0;
     text-align: center;
     padding: 20px 10px;
@@ -87,65 +105,20 @@ section button:focus {
 
 /* footer selectors */
 footer {
-    color: var(--greenLight);
-    text-shadow: 0 3px 1px var(--greenDark);
-    background-color: var(--middle);
-    height: 8%;
-    text-align: center;
-    padding: 20px 0 0;
-    border-top: 5px solid var(--dark);
-    font-size: 24px;
+    color: var(--middle);
+    height: 5%;
+    text-align: right;
+    padding: 10px;
+    border-top: 2px solid var(--dark);
+    font-size: 20px;
 }
 
 footer span {
-    color: var(--blueLight);
-    text-shadow: 0 3px 1px var(--blueDark);
-    font-size: 24px;
+    color: var(--blueDark);
+    font-size: 20px;
 }
 
-/* media selectors */
-@media screen and (max-width: 768px) {
-    /* universal selectors */
-    * {
-        font-size: 20px;
-    }
-    body {
-        height: 100vh;
-    }
-
-    /* header selectors */
-    header {
-        height: 20%;
-        text-shadow: 3px 0 1px var(--greenDark);
-    }
-    header h1 {
-        font-size: 36px;
-    }
-    header h2 {
-        font-size: 28px;
-    }
-
-    /* main selectors */
-    main {
-        display: flex;
-        flex-direction: column-reverse;
-        height: 72%;
-    }
-
-    /* section selectors */
-    section {
-        height: 100%;
-        width: 100%;
-    }
-    
-    /* footer selectors */
-    footer {
-        height: 8%;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    footer span {
-        font-size: 18px;
-    }
+/* id selectors */
+[data-state='hide'] {
+    display: none;
 }

@@ -1,26 +1,26 @@
-var startClick = document.getElementById("start");
-var timerEl = document.getElementById("timer");
-var questionEl = document.getElementById("quesBox");
-var ansBoxEl = document.getElementsByClassName("ansBox");
-var ans1 = document.getElementById("ans1");
-var ans2 = document.getElementById("ans2");
-var ans3 = document.getElementById("ans3");
-var ans4 = document.getElementById("ans4");
-var responseEl = document.getElementById("response");
-
-var currentQuestionIndex;
+var startMenu = $(".startMenu");
+var questionMenu = $ (".questionMenu");
+var startClick = $("#start");
+var timerEl = $("#timer");
+var questionEl = $("#quesBox");
+var ansBoxEl = $(".ansBox");
+var ans1 = $("#ans1");
+var ans2 = $("#ans2");
+var ans3 = $("#ans3");
+var ans4 = $("#ans4");
+var responseEl = $("#response");
 
 function countdown () {
     var timeLeft = 60;
     var timeInterval = setInterval(function() {
         if (timeLeft > 1) {
-            timerEl.textContent = 'Timer: ' + timeLeft;
+            timerEl.text('Timer: ' + timeLeft);
             timeLeft--;
         } else if (timeLeft === 1) {
-            timerEl.textContent = 'Timer: ' + timeLeft;
+            timerEl.text('Timer: ' + timeLeft);
             timeLeft--;
         } else {
-            timerEl.textContent = '';
+            timerEl.text('');
             clearInterval(timeInterval);
             endScreen();
         }
@@ -28,18 +28,30 @@ function countdown () {
 };
 
 //on button click
-startClick.addEventListener('click', beginQuiz);
+startClick.on('click', beginQuiz);
 //start quiz
 function beginQuiz() {
     //start timer
     countdown();
     //display first question
     nextQuestion();
+    startMenu.attr('data-state', 'hide');
+    questionMenu.attr('data-state', 'show');
 };
 
 function nextQuestion() {
-
+    showQuestion();
 };
+
+var index = 0;
+
+function showQuestion() {
+    questionEl.text(questions[index].question);
+    ans1.text(questions[index].answers.ans1)
+    ans2.text(questions[index].answers.ans2)
+    ans3.text(questions[index].answers.ans3)
+    ans4.text(questions[index].answers.ans4)
+}
 
 function selectAnswer () {};
 //on question answer
