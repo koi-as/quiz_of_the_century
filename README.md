@@ -15,6 +15,8 @@ To use this webpage, one must simply click on the 'Start' button that appears on
 ![Main menu sccreenshot](./assests/images/quizMainMenu.png) <br/>
 ![Leaderboard menu screenshot](./assests/images/leaderboardMenu.png)
 
+Link to deployed application: https://koi-as.github.io/quiz_of_the_century/
+
 ## Credits
 
 Thanks to Brittani Court who helped me display the questions and answers for the quiz! <br/>
