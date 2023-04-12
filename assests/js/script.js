@@ -1,3 +1,4 @@
+// quiz logic // * - -   *   * - * *   - * - *   - - -   - -   * //
 var startMenu = $(".startMenu");
 var questionMenu = $ (".questionMenu");
 var startClick = $("#start");
@@ -10,9 +11,12 @@ var ans2 = $("#ans2");
 var ans3 = $("#ans3");
 var ans4 = $("#ans4");
 var responseEl = $("#response");
+var inputEl = $("#initials")
+
+var index = 0;
 
 function countdown () {
-    var timeLeft = 60;
+    var timeLeft = 90;
     var timeInterval = setInterval(function() {
         if (timeLeft > 1) {
             timerEl.text('Timer: ' + timeLeft);
@@ -26,6 +30,11 @@ function countdown () {
             endScreen();
         }
     }, 1000)
+
+    if(timeLeft < 0) {
+        timeLeft = 0;
+        endScreen();
+    }
 };
 
 //on button click
@@ -41,10 +50,13 @@ function beginQuiz() {
 };
 
 function nextQuestion() {
-    showQuestion();
+    if(index < 10) {
+        showQuestion();
+        index++;
+    } else {
+        endScreen();
+    }
 };
-
-var index = 0;
 
 function showQuestion() {
     questionEl.text(questions[index].question);
@@ -52,40 +64,31 @@ function showQuestion() {
     ans2.text(questions[index].answers[1]);
     ans3.text(questions[index].answers[2]);
     ans4.text(questions[index].answers[3]);
-    // var ansIndex = 0;
-    ansBoxEl.children[index].attr('data-correct', 'correct')
-    // if(answerCorrect[index] === true) {
-    //     responseEl.text('correct!')
-    // } else {
-    //     responseEl.text('wrong!')
-    // }
+    selectAnswer();
 }
 
 //on question answer
 //1. confirm correct or incorrect
-function selectAnswer (i) {
-    var selectedBtn = i.target;
+function selectAnswer () {
+
         //  - on question correct respond 'correct'
         //  - on question incorrect respond 'wrong'
     //2. change question
-    btnEl.on('click', () => {
-        index++;
-        nextQuestion()
-    })
 };
 
 //repeat until last question
 //time penalty? 6s
 
-function endScreen() {};
+function endScreen() {
+    questionEl.text('Congratulations! You finished the quiz! Type your initials below to save your score!');
+    questionMenu.attr('data-state', 'hide');
+    //enter initials to save data
+    inputEl.attr('data-state', 'show');
 //on answered last question or timer 0
 //end quiz
 //change page to show results
-//enter initials to save data
 
-function lbScreen() {};
-//show save data on highscore board
-//show options to return to main menu or play again
+};
 
 //how many questions? 10
 var questions = [
@@ -96,7 +99,8 @@ var questions = [
             '49301.71',
             '53109.17',
             '59301.71'
-        ]
+        ],
+        correct: '43109.17'
     },
     {
         question: 'What color is the sun?',
@@ -105,7 +109,8 @@ var questions = [
             'Green',
             'Yellow',
             'Red'
-        ]
+        ],
+        correct: 'White'
     },
     {
         question: 'White is the color commonly attributed to lightning. What popular animated series features a lightning based character?',
@@ -114,7 +119,8 @@ var questions = [
             'Transformers', 
             'Adventure Time',
             'Pokemon' //correct
-        ]
+        ],
+        correct: 'Pokemon'
     },
     {
         question: "What is Jung's favorite variable?",
@@ -123,7 +129,8 @@ var questions = [
             'Pikachu', //correct
             'A Students Name', 
             'Mayonnaise'
-        ]
+        ],
+        correct: 'Pikachu'
     },
     {
         question: 'How many chicken nuggies does it take to fill a pool if the pool was 10ftx50ftx8ft?',
@@ -132,7 +139,8 @@ var questions = [
             '23952.1', //correct
             '25064.7',
             '28993.3'
-        ]
+        ],
+        correct: '23952.1'
     },
     {
         question: 'Water is very healthy. How much have you had today?',
@@ -141,16 +149,18 @@ var questions = [
             'Not Enough', //correct
             'Enough',
             'Plenty'
-        ]
+        ],
+        correct: 'Not Enough'
     },
     {
         question: 'What is the main ingredient in Walmart Carrot Cake?',
         answers: [
-             'Water',
-             'Carrots',
+            'Water',
+            'Carrots',
             'Sugar', //correct
             'Chicken'
-        ]
+        ],
+        correct: 'Sugar'
     },
     {
         question: 'Make the following sentence make sense: This webpage is getting a(n) ___ as a grade.',
@@ -159,7 +169,8 @@ var questions = [
             '30%',
             '70%',
             '100%' //correct
-        ]
+        ],
+        correct: '100%'
     },
     {
         question: 'Who is the fairest of them all?',
@@ -168,7 +179,8 @@ var questions = [
             'Rapunzel',
             'Snow White', //correct
             'The 7 Dwarfs'
-        ]
+        ],
+        correct: 'Snow White'
     },
     {
         question: 'Is this the final question?',
@@ -177,19 +189,25 @@ var questions = [
             'No', //correct
             'Chicken Nuggies',
             'Maybe',
-        ]
+        ],
+        correct: 'No'
     }
 ];
 
-answerCorrect = [
-    ansBoxEl.children[0].attr('data-state', 'correct'),
-    ansBoxEl.children[0].attr('data-state', 'correct'),
-    ansBoxEl.children[3].attr('data-state', 'correct'),
-    ansBoxEl.children[1].attr('data-state', 'correct'),
-    ansBoxEl.children[1].attr('data-state', 'correct'),
-    ansBoxEl.children[1].attr('data-state', 'correct'),
-    ansBoxEl.children[2].attr('data-state', 'correct'),
-    ansBoxEl.children[3].attr('data-state', 'correct'),
-    ansBoxEl.children[2].attr('data-state', 'correct'),
-    ansBoxEl.children[1].attr('data-state', 'correct')
-];
+// scoreboard script // * * * *   * * / -   * * * *   *   * - *   * //
+
+var returnBtn = $('#returnBtn')
+var clearBtn = $('#clearBtn')
+var lbEl = $('.leaderboard')
+//show save data on highscore board
+function highscoreSave () {
+    saveData.text(inputEl + ': ' + timeLeft)
+};
+//show options to return to main menu or play again
+returnBtn.on('click', function () {
+    window.location.href='./index.html'
+});
+
+clearBtn.on('click', function () {
+    lbEl.children().remove()
+});

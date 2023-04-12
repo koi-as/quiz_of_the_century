@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <p>View Leaderboard</p>
+        <p><a href="./leaderboard.html">View Leaderboard</a></p>
         <p id="timer">Timer: --</p>
     </header>
 
@@ -24,12 +24,13 @@
             <div class="questionMenu" data-state="hide">
                 <div id="quesBox"></div>
                 <div class="ansBox">
-                    <button class="button" id="ans1" data-correct="wrong">Ans1</button>
-                    <button class="button" id="ans2" data-correct="wrong">Ans2</button>
-                    <button class="button" id="ans3" data-correct="wrong">Ans3</button>
-                    <button class="button" id="ans4" data-correct="wrong">Ans4</button>
+                    <button class="button" id="ans1">Ans1</button>
+                    <button class="button" id="ans2">Ans2</button>
+                    <button class="button" id="ans3">Ans3</button>
+                    <button class="button" id="ans4">Ans4</button>
                 </div>
                 <div id="response"></div>
+                <input type="text" id="initials" data-state="hide" minlength="1" maxlength="3" placeholder="Please Type Your Initials Here (1-3 Letters)">
             </div>
         </section>
     </main>

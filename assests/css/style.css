@@ -36,6 +36,13 @@ header p {
     text-decoration: underline;
 }
 
+header p a {
+    padding: 5px;
+    font-size: 20px;
+    text-decoration: underline;
+    color: #000;
+}
+
 /* main selectors */
 main {
     display: flex;
@@ -97,12 +104,6 @@ section button:hover {
     background-color: var(--blueDark);
 }
 
-section button:active,
-section button:focus {
-    border: 3px solid var(--greenLight);
-    background-color: var(--greenDark);
-}
-
 /* footer selectors */
 footer {
     color: var(--middle);
@@ -122,4 +123,10 @@ footer span a {
 /* id selectors */
 [data-state='hide'] {
     display: none;
+}
+
+#initials {
+    font-size: 16px;
+    width: 400px;
+    height: 40px;
 }
