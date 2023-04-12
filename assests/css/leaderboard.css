@@ -64,13 +64,13 @@ main h1 {
     border-radius: 10px;
 }
 
+.navButtons button:hover {
+    box-shadow: 2px 2px 0 var(--dark) inset;
+}
+
 .navButtons #returnBtn {
     background-color: var(--blueLight);
     border: 2px solid var(--blueDark);
-}
-
-.navButtons #returnBtn:hover {
-    
 }
 
 .navButtons #clearBtn {

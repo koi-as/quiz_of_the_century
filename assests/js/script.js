@@ -13,11 +13,17 @@ var ans4 = $("#ans4");
 var responseEl = $("#response");
 var inputEl = $("#initials")
 
-var index = 0;
+var timeInterval;
 
-function countdown () {
-    var timeLeft = 90;
-    var timeInterval = setInterval(function() {
+var index = 0;
+var timeLeft = 90;
+
+//on button click
+startClick.on('click', beginQuiz);
+//start quiz
+function beginQuiz() {
+    //start timer
+    timeInterval = setInterval(function() {
         if (timeLeft > 1) {
             timerEl.text('Timer: ' + timeLeft);
             timeLeft--;
@@ -30,19 +36,6 @@ function countdown () {
             endScreen();
         }
     }, 1000)
-
-    if(timeLeft < 0) {
-        timeLeft = 0;
-        endScreen();
-    }
-};
-
-//on button click
-startClick.on('click', beginQuiz);
-//start quiz
-function beginQuiz() {
-    //start timer
-    countdown();
     //display first question
     nextQuestion();
     startMenu.attr('data-state', 'hide');
@@ -53,8 +46,9 @@ function nextQuestion() {
     if(index < 10) {
         showQuestion();
         index++;
-    } else {
+    } else if (index >= 10){
         endScreen();
+        return;
     }
 };
 
@@ -64,30 +58,35 @@ function showQuestion() {
     ans2.text(questions[index].answers[1]);
     ans3.text(questions[index].answers[2]);
     ans4.text(questions[index].answers[3]);
-    selectAnswer();
+    btnEl.on('click', selectAnswer)
 }
 
 //on question answer
 //1. confirm correct or incorrect
 function selectAnswer () {
-
-        //  - on question correct respond 'correct'
+    if(ans1.value && ans2.value && ans3.value && ans4.value !== questions[index].correct) {
+        timeLeft -= 10;
+        nextQuestion();
         //  - on question incorrect respond 'wrong'
-    //2. change question
+        responseEl.text('wrong');
+        return;
+    } else {
+        nextQuestion();
+        //  - on question correct respond 'correct'
+        responseEl.text('correct');
+    }
 };
 
-//repeat until last question
-//time penalty? 6s
-
-function endScreen() {
-    questionEl.text('Congratulations! You finished the quiz! Type your initials below to save your score!');
-    questionMenu.attr('data-state', 'hide');
-    //enter initials to save data
-    inputEl.attr('data-state', 'show');
 //on answered last question or timer 0
 //end quiz
-//change page to show results
-
+function endScreen() {
+    clearInterval(timeInterval);
+    var score = timeLeft;
+    questionEl.text('Congratulations! You finished the quiz! Type your initials below to save your score!');
+    btnEl.attr('data-state', 'hide');
+    responseEl.attr('data-state', 'hide');
+    //enter initials to save data
+    inputEl.attr('data-state', 'show');
 };
 
 //how many questions? 10
@@ -167,10 +166,10 @@ var questions = [
         answers: [
             '0%',
             '30%',
-            '70%',
-            '100%' //correct
+            '70%', //correct
+            '100%' 
         ],
-        correct: '100%'
+        correct: '70%'
     },
     {
         question: 'Who is the fairest of them all?',
@@ -201,7 +200,18 @@ var clearBtn = $('#clearBtn')
 var lbEl = $('.leaderboard')
 //show save data on highscore board
 function highscoreSave () {
-    saveData.text(inputEl + ': ' + timeLeft)
+    if(inputEl !== '') {
+        var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+    }
+
+    var finalScore = {
+        score: timeLeft,
+        name: inputEl
+    }
+
+    highscores.push(finalScore)
+    window.localStorage.setItem('leaderboard', JSON.stringify(highscores));
+    window.location.href='./leaderboard.html';
 };
 //show options to return to main menu or play again
 returnBtn.on('click', function () {
