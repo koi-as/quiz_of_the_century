@@ -21,58 +21,59 @@ body {
     height: 100vh;
 }
 
- /* header properties */
- header {
-    height: 5%;
-    border-bottom: 2px solid var(--dark);
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
- }
-
- /* main properties */
- main {
-    height: 100%;
+main {
     display: flex;
     justify-content: center;
     align-items: center;
- }
+    border: 1px solid #000;
+    height: 100%;
+    flex-direction: column;
+}
 
-main section {
+main h1 {
+    color: var(--blueDark);
+    font-size: 50px;
+    padding: 10px;
+    margin: 5px;;
+}
+
+.leaderboard {
+    border: 1px solid var(--dark);
+    border-radius: 10px;
     height: 60%;
     width: 50%;
-    border: 1px solid red;
- }
-
-main section p {
-    text-align: center;
-    font-size: 24px;
-    padding: 20px;
 }
 
-main section .ansBox {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 20px;
+.leaderboard p {
+    font-size: 30px;
+    padding: 5px 10px;
 }
 
-main section div button {
-    height: 40px;
-    width: 70%;
-    color: var(--light);
-    border: 3px solid var(--middle);
-    background-color: var(--dark);
-    padding: 5px 0;
-    margin: 10px 5px;
+.leaderboard p:nth-child(even) {
+    background-color: var(--greenLight);
 }
 
-main section div button:hover {
-    border: 3px solid var(--blueLight);
-    background-color: var(--blueDark);
+.navButtons {
+    margin: 10px;
+    padding: 10px;
+    font-size: 30px;
 }
 
-main section #response {
-    font-size: 20px;
+.navButtons button {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.navButtons #returnBtn {
+    background-color: var(--blueLight);
+    border: 2px solid var(--blueDark);
+}
+
+.navButtons #returnBtn:hover {
+    
+}
+
+.navButtons #clearBtn {
+    background-color: var(--redLight);
+    border: 2px solid var(--redDark);
 }
